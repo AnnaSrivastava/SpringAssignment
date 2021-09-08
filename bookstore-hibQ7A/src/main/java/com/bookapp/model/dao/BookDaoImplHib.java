@@ -7,11 +7,14 @@ import javax.sql.DataSource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import com.bookapp.model.entities.Book;
 import com.bookapp.model.exceptions.BookNotFoundException;
 
 @Repository
+@Primary
 public class BookDaoImplHib implements BookDao {
 
 	private SessionFactory sessionFactory;
@@ -31,9 +34,8 @@ public class BookDaoImplHib implements BookDao {
 	}
 
 	@Override
-	public Book addBook(Book book) {
-		getSession().save(book);
-		return book;
+	public void addBook(Book book) {
+		getSession().persist(book);
 	}
 
 	@Override
@@ -45,9 +47,7 @@ public class BookDaoImplHib implements BookDao {
 
 	@Override
 	public void updateBook(int id, Book book) {
-		Book bookToUpdate = getBookById(id);
-		bookToUpdate.setPrice(book.getPrice());
-		getSession().merge(bookToUpdate);
+		getSession().merge(book);
 	}
 
 	@Override
