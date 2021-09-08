@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- we want to configure datasouce in xml -->
+
+	<context:property-placeholder
+		location="classpath:db.properties" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="${jdbc.url}" />
+		<property name="driverClassName" value="${jdbc.driverName}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="BookService" class="com.bookapp.model.service.BookServiceImpl" autowire="byType">
+	</bean>
+	<bean id="BookDaoImpl" class="com.bookapp.model.dao.BookDaoImpl" />
+	<bean id="Book" class="com.bookapp.model.dao.Book" />
+	<bean id="BookDaoImplJdbc" class="com.bookapp.model.dao.BookDaoImplJdbc" primary="true">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+</beans>
