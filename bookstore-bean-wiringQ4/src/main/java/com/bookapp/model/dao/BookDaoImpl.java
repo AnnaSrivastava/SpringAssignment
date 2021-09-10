@@ -1,10 +1,14 @@
 package com.bookapp.model.dao;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
-
+import lombok.Getter;
+import lombok.Setter;
+//@Getter
+//@Setter
 public class BookDaoImpl implements BookDao{
 
 	private static Map<Integer, Book> booksMap = new HashMap<Integer, Book>();
@@ -14,9 +18,18 @@ public class BookDaoImpl implements BookDao{
 //		booksMap.put(++counter,  new Book(counter, "ABC723", "Servlet jsp Java" , "Katthy", 700));
 //	}
 
+	
 	@Override
 	public List<Book> getAllBooks() {
 		return new ArrayList<Book>(booksMap.values());
+	}
+	
+	public static Map<Integer, Book> getBooksMap() {
+		return booksMap;
+	}
+
+	public static void setBooksMap(Map<Integer, Book> booksMap) {
+		BookDaoImpl.booksMap = booksMap;
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package com.bookapp.model.dao;
 
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

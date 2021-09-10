@@ -20,7 +20,7 @@ public class BookController {
 		this.bookService = bookService;
 	}
 	//you can use whatever u like
-	@GetMapping("allbooks")
+	@GetMapping("/")
 	public String getAllbooks(ModelMap map) {
 		map.addAttribute("books", bookService.getAllBooks());
 		return "allbooks";

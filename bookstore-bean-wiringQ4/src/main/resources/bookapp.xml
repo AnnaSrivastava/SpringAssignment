@@ -24,16 +24,16 @@
 	<bean id="book2" class="com.bookapp.model.dao.Book" autowire="byType" p:id="2" p:isbn="ABC723" p:title="Servelet JSP Java" p:author="Katthy" p:price="700" />
 	<bean id="BookService" class="com.bookapp.model.service.BookServiceImpl" autowire="byType">
 	</bean>
-	<bean id="BookDaoImpl" class="com.bookapp.model.dao.BookDaoImpl">
-    <constructor-arg name="booksMap">
+	<bean id="BookDaoImpl" class="com.bookapp.model.dao.BookDaoImpl" primary="true">
+	<property name="booksMap">
        <map>
        	<entry key="1" value-ref="book1" />
        	<entry key="2" value-ref="book2" />
        </map>
-    </constructor-arg>
+    </property>
 </bean>
 	
-	<bean id="BookDaoImplJdbc" class="com.bookapp.model.dao.BookDaoImplJdbc" primary="true">
+	<bean id="BookDaoImplJdbc" class="com.bookapp.model.dao.BookDaoImplJdbc" >
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
