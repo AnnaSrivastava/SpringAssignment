@@ -22,7 +22,6 @@ public class BookDaoImpl implements BookDao{
 
 	@Override
 	public Book addBook(Book book) {
-		System.out.println("hgfugf");
 		book.setId(++counter);
 		booksMap.put(counter, book);
 		return booksMap.get(counter);

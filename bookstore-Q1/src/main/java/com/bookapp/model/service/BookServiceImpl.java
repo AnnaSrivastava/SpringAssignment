@@ -9,7 +9,6 @@ public class BookServiceImpl implements BookService{
 
 	private BookDao bookDao;
 
-
 	public void setBookDao(BookDao bookDao) {
 		this.bookDao = bookDao;
 	}
@@ -18,7 +17,7 @@ public class BookServiceImpl implements BookService{
 	public List<Book> getAllBooks() {
 		return bookDao.getAllBooks();
 	}
-
+	
 	@Override
 	public Book addBook(Book book) {
 		return bookDao.addBook(book);
